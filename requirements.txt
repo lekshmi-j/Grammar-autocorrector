@@ -1,0 +1,7 @@
+nltk
+spacy
+pyspellchecker
+scikit-learn
+transformers
+torch
+streamlit
