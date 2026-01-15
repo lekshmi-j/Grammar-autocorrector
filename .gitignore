@@ -1,0 +1,11 @@
+# Python cache
+__pycache__/
+
+# Environment variables
+.env
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Raw datasets (DO NOT PUSH)
+data/raw/*
