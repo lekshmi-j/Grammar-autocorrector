@@ -35,3 +35,5 @@ This project builds a modular grammar auto-correction system that detects and co
 
 ## Status
 🚧 Phase 0: Project setup & scoping
+
+In grammar correction, incorrect corrections are worse than missed corrections.
