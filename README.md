@@ -37,3 +37,66 @@ This project builds a modular grammar auto-correction system that detects and co
 🚧 Phase 0: Project setup & scoping
 
 In grammar correction, incorrect corrections are worse than missed corrections.
+
+## Consolidated Error Patterns
+
+| Error Type | Linguistic Signal | Detection Level |
+|-----------|------------------|----------------|
+| SPELL | Non-dictionary token | Token |
+| SVA | Singular subject + base verb | Dependency |
+| ARTICLE | Noun without determiner | Dependency |
+| TENSE | Past time word + non-past verb | POS + Dependency |
+| VERB FORM | Auxiliary misuse / wrong verb POS | POS |
+
+IF token not found in dictionary
+THEN candidate spelling error
+
+IF subject (nsubj) is singular
+AND verb is base form (VB)
+THEN subject–verb agreement error
+
+IF noun (NN) has no determiner child (det)
+AND noun is countable
+THEN missing article error
+
+IF sentence contains past-time modifier (yesterday, last, ago)
+AND main verb is not past tense (VBD)
+THEN tense error
+
+IF auxiliary verb present
+AND main verb POS does not match auxiliary
+THEN verb form error
+
+## Rule-based vs ML-based Decisions
+
+| Error Type | Approach | Reason |
+|-----------|--------|--------|
+| SPELL | Rule-based | Dictionary & edit distance works well |
+| SVA | Rule-based | Clear dependency patterns |
+| ARTICLE | Hybrid | Simple cases rule-based, others contextual |
+| TENSE | Rule-based (initial) | Time-word patterns detectable |
+| VERB FORM | ML-based (later) | Context-sensitive, ambiguous |
+
+## Phase 2 Strategy (Locked)
+
+Phase 2 will implement:
+- Rule-based SPELL correction
+- Rule-based SVA correction
+- Rule-based ARTICLE correction (simple cases only)
+- Rule-based TENSE correction using time expressions
+
+ML-based correction is deferred to Phase 4.
+
+## Design Principle: Precision over Recall
+
+Incorrect corrections degrade user trust more than missed corrections.
+Therefore, rules will only fire when confidence is high.
+
+
+## Phase 1 Summary
+
+- Identified core grammar error types
+- Analyzed errors at token, POS, and dependency levels
+- Defined formal detection patterns
+- Chose rule-based vs ML-based strategies
+- Locked Phase 2 implementation plan
