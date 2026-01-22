@@ -108,3 +108,10 @@ Therefore, rules will only fire when confidence is high.
 - No handling of irregular verbs
 - Article rules are heuristic-based
 - Rules fire conservatively to avoid over-correction
+
+## Spelling Correction Limitations
+
+- Context-free spelling correction
+- Proper nouns may be incorrectly corrected
+- Grammar-aware spelling is not handled yet
+- Conservative correction preferred to avoid noise
