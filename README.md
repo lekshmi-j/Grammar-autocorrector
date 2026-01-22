@@ -100,3 +100,11 @@ Therefore, rules will only fire when confidence is high.
 - Defined formal detection patterns
 - Chose rule-based vs ML-based strategies
 - Locked Phase 2 implementation plan
+
+
+## Rule-Based System Limitations
+
+- Over-simplified verb inflections
+- No handling of irregular verbs
+- Article rules are heuristic-based
+- Rules fire conservatively to avoid over-correction

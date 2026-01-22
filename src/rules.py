@@ -24,7 +24,7 @@ def subject_verb_agreement_rule(doc):
     - corrected sentence (str)
     - None if no correction needed
     """
-    print("Hi there")
+    
     for token in doc:
 
         # Step 1: Identify nominal subject
@@ -66,3 +66,36 @@ def subject_verb_agreement_rule(doc):
             return corrected_sentence
 
     return None
+
+def article_rule(doc):
+    for token in doc:
+        if token.pos_ == "NOUN":
+            has_det = any(child.dep_ == "det" for child in token.children)
+
+            if not has_det:
+                # simple heuristic: use "a"
+                corrected_sentence = doc.text.replace(
+                    token.text, "a " + token.text, 1
+                )
+                return corrected_sentence
+
+    return None
+
+
+
+def tense_rule(doc):
+    PAST_TIME_WORDS = {"yesterday", "ago", "last"}
+    tokens_lower = {t.text.lower() for t in doc}
+
+    if tokens_lower & PAST_TIME_WORDS:
+        for token in doc:
+            #print(token," ",token.dep_," ",token.tag_)
+            if token.dep_ == "ROOT" and token.tag_ == "VBP":
+                corrected_verb = token.text + "ed"
+                corrected_sentence = doc.text.replace(
+                    token.text, corrected_verb, 1
+                )
+                return corrected_sentence
+
+    return None
+
