@@ -15,6 +15,10 @@ Design principle:
 
 import spacy
 import pandas as pd
+from src.ml_detector import load_detector
+
+ml_detector = load_detector()
+
 
 # Phase 3
 from src.spelling import correct_spelling_sentence
@@ -63,16 +67,20 @@ def correct_sentence(sentence: str) -> str:
     # ---------- Phase 4: ML-based error detection ----------
     df = pd.DataFrame([{"sentence": sentence}])
     is_correct = ml_detector.predict(df)[0]
+    # print("detect here")
 
     # If ML predicts sentence is correct, return as-is
+
     if is_correct == 1:
         return sentence
 
     # ---------- Phase 3: Spelling correction ----------
     sentence = correct_spelling_sentence(sentence)
+    # print("spelling here")
 
     # ---------- Phase 2: Grammar rules ----------
     doc = nlp(sentence)
+    # print("grammar here")
 
     for rule in RULES:
         corrected = rule(doc)
