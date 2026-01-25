@@ -115,3 +115,10 @@ Therefore, rules will only fire when confidence is high.
 - Proper nouns may be incorrectly corrected
 - Grammar-aware spelling is not handled yet
 - Conservative correction preferred to avoid noise
+## Detection vs Correction vs Rewriting
+
+- Detection: Decide whether a sentence contains an error
+- Correction: Fix the grammatical error while preserving meaning
+- Rewriting: Improve fluency or style (may change meaning)
+
+Transformer models often drift from correction into rewriting.
