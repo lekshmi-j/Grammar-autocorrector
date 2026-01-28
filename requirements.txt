@@ -1,7 +1,9 @@
 nltk
 spacy
 pyspellchecker
-scikit-learn
 transformers
 torch
 streamlit
+scikit-learn==1.6.1
+dill
+
